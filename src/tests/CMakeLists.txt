@@ -21,8 +21,6 @@ set(SPAWNY-DAEMON-TEST-SOURCE
     ../sp-daemon/manager.c
     ../sp-daemon/spawnregistery.c
     ../sp-daemon/spawnregistery.h
-    ../sp-daemon/sessionmgt.h
-    ../sp-daemon/sessionmgt_logind.c
     ../sp-daemon/templatereg.h
     ../sp-daemon/templatereg.c
 )
