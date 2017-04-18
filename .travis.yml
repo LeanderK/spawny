@@ -2,21 +2,7 @@ language: c
 dist: trusty
 sudo: required
 script:
-  - sudo apt-get install autotools-dev automake autoconf libtool libdbus-1-dev libcap-dev libblkid-dev libpam-dev libcryptsetup-dev libaudit-dev libacl1-dev libattr1-dev libselinux-dev liblzma-dev libgcrypt-dev libqrencode-dev libmicrohttpd-dev gtk-doc-tools gperf python2.7-dev libmount-dev mount
-  - git clone git://github.com/systemd/systemd.git /tmp/systemd
-  - >
-      cd /tmp/systemd/  &&
-      git checkout v232 &&
-      sh autogen.sh     &&
-      ./configure --disable-apparmor --disable-audit --disable-selinux
-      --disable-machined --disable-timedated
-      --disable-timesyncd --disable-localed --disable-resolved
-      --disable-networkd --disable-tests --disable-coredump --disable-hostnamed
-      --disable-manpages --disable-libcryptsetup --disable-python-devel
-      --sysconfdir=/etc --localstatedir=/var --libdir=/usr/lib
-      --with-rootprefix= --with-rootlibdir=/lib
-  - cd /tmp/systemd/ && make && sudo make install
-  - cmake .
+  - cmake -DNO_SYSTEMD_SUPPORT=1 .
   - make
   - make test
 

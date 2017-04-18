@@ -40,7 +40,6 @@ set(SPAWNY-DAEMON-SOURCE
     greeter.c
     greeter.h
     sessionmgt.h
-    sessionmgt_logind.c
     server.c
     server.h
     templatereg.h
@@ -56,6 +55,13 @@ set(SPAWNY-DAEMON-SOURCE
     ${PROJECT_SOURCE_DIR}/components/inih/ini.h
     ${PROJECT_SOURCE_DIR}/components/inih/ini.c
 )
+
+if (NO_SYSTEMD_SUPPORT)
+    list(APPEND SPAWNY-DAEMON-SOURCE sessionmgt_dummy.c)
+else ()
+    list(APPEND SPAWNY-DAEMON-SOURCE sessionmgt_logind.c)
+endif()
+
 
 add_executable(sp-daemon ${SPAWNY-DAEMON-SOURCE})
 
